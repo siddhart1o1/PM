@@ -1,0 +1,55 @@
+/* Board-specific styles */
+.task-column {
+  background-color: var(--background);
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.task-card {
+  position: relative;
+  overflow: hidden;
+  box-shadow: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  will-change: transform;
+}
+
+.task-card:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transform: translateY(-1px);
+}
+
+/* Fix for dragging */
+.task-card:active {
+  cursor: grabbing;
+  transform: rotate(1deg) scale(1.01);
+  z-index: 10;
+}
+
+/* Add transition for smooth container animations */
+.task-column .space-y-3 {
+  transition: background-color 0.2s ease;
+}
+
+/* This ensures we don't see any unwanted left side shadows */
+.task-card::before {
+  display: none;
+}
+
+/* Fix for column background when dragging over */
+.task-column.drag-over {
+  background-color: rgba(var(--primary), 0.05);
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .task-card {
+    margin-bottom: 0.5rem;
+  }
+
+  .task-column {
+    margin-bottom: 1rem;
+  }
+}

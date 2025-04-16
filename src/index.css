@@ -1,0 +1,294 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 20% 98%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 221 83% 53%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221 83% 53%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 225 15% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 217 90% 60%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 225 14% 16%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 225 15% 12%;
+    --sidebar-ring: 217 90% 60%;
+  }
+
+  .dark {
+    /* Main content background - darker gray */
+    --background: 225 14% 15%;
+    --foreground: 210 40% 98%;
+
+    /* Card background - darker than main content but not black */
+    --card: 225 14% 13%;
+    --card-foreground: 210 40% 98%;
+
+    /* Popover and modals */
+    --popover: 225 14% 13%;
+    --popover-foreground: 210 40% 98%;
+
+    /* Primary blue similar to the one in the image */
+    --primary: 217 90% 60%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Secondary colors - darker grays for UI elements */
+    --secondary: 225 14% 18%;
+    --secondary-foreground: 210 40% 98%;
+
+    /* Muted elements */
+    --muted: 225 14% 20%;
+    --muted-foreground: 215 20% 75%;
+
+    /* Accent colors */
+    --accent: 225 14% 18%;
+    --accent-foreground: 210 40% 98%;
+
+    /* Destructive/error colors */
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    /* Borders - subtle with slightly higher contrast */
+    --border: 225 14% 20%;
+    --input: 225 14% 22%;
+    --ring: 217 90% 60%;
+
+    /* Sidebar - almost black with blue accents */
+    --sidebar-background: 225 15% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 217 90% 60%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 225 14% 16%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 225 15% 12%;
+    --sidebar-ring: 217 90% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  /* Custom utilities for our task board */
+  .task-progress-green {
+    @apply bg-green-500;
+  }
+  .task-progress-amber {
+    @apply bg-amber-500;
+  }
+  .task-progress-rose {
+    @apply bg-rose-500;
+  }
+
+  /* Column styling */
+  .task-column {
+    @apply bg-card rounded-lg shadow-sm p-4;
+  }
+
+  /* Drag and drop styling */
+  .task-dragging {
+    @apply opacity-50;
+  }
+  .task-drop-area {
+    @apply border-2 border-dashed border-primary/20 rounded-md;
+  }
+
+  /* Custom transitions */
+  .transition-drawer {
+    @apply transition-transform duration-300 ease-in-out;
+  }
+
+  .glass-card {
+    @apply bg-card/70 backdrop-blur-sm border border-border;
+  }
+
+  /* Animations */
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-out forwards;
+  }
+
+  .animate-slide-in {
+    animation: slideIn 0.3s ease-out forwards;
+  }
+
+  /* Responsive utilities */
+  .responsive-container {
+    @apply container mx-auto px-4 md:px-6;
+  }
+
+  .responsive-grid {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4;
+  }
+}
+
+/* Custom animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Custom scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-muted rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-muted-foreground/50;
+}
+
+/* Media queries for responsive design */
+@media (max-width: 640px) {
+  .hide-on-mobile {
+    display: none;
+  }
+
+  .mobile-full-width {
+    width: 100% !important;
+  }
+
+  .mobile-px-4 {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  .mobile-py-2 {
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+  }
+
+  .mobile-stack {
+    flex-direction: column !important;
+  }
+
+  .mobile-center {
+    justify-content: center !important;
+    text-align: center !important;
+  }
+
+  .mobile-text-sm {
+    font-size: 0.875rem !important;
+  }
+}
+
+/* Add responsive table styles */
+.table-container {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table-responsive {
+  width: 100%;
+  min-width: 640px;
+}
+
+/* Dark mode image adjustments */
+.dark img:not([src*=".svg"]) {
+  filter: brightness(0.9) contrast(1.1);
+}
+
+/* Task card adjustments for dark mode */
+.dark .task-card {
+  background-color: hsl(var(--card));
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Add these rules at the end of the file */
+
+/* Fix for drag and drop issues with task cards */
+.task-card {
+  overflow: hidden !important;
+  box-shadow: none !important;
+  position: relative;
+  will-change: transform;
+  z-index: 1;
+}
+
+/* Remove any left side shadows or elements */
+.task-card::before,
+.task-card::after {
+  display: none !important;
+}
+
+/* Ensure cards don't have unwanted shadows when dragging */
+.task-card:active {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+  transform: rotate(1deg) scale(1.01);
+  z-index: 10;
+}
+
+/* Fix for column styling */
+.task-column {
+  border: 1px solid hsl(var(--border)) !important;
+  background-color: hsl(var(--background)) !important;
+  border-radius: 8px !important;
+  overflow: hidden !important;
+}
+
+/* Drag over effect */
+.task-column.drag-over {
+  background-color: hsl(var(--accent)) !important;
+}
+
+/* Fix progress bar overflow */
+.task-card .progress {
+  overflow: hidden !important;
+}
